@@ -1,0 +1,163 @@
+{
+    "platforms": [
+        {
+            "id": "hololens",
+
+            "nodes": [
+                { "id": "hl5", "address": "10.160.38.111", "display": "disp_hololens" }
+            ],
+
+            "displays": [
+                { "id": "disp_hololens", "type": "mixedreality", "use_previous_origin": false, "tracker": "track_hololens", "clipping_plane": 0.1 }
+            ],
+
+            "trackers": [
+                {
+                    "id": "track_hololens", "type": "osc", "port": 6666,
+                    "buttons": [
+                        { "id": "tap", "mapping": "Fire1" },
+                        { "id": "navigate_x", "mapping": "Horizontal" },
+                        { "id": "navigate_y", "mapping": "Vertical" }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "quad_display",
+
+            "cluster": { "master": "inm275559", "data_port": 4448, "sync_port": 4449, "packet_limit": 1048576, "auto_sync_rigid": true,
+                         "auto_sync_nonstatic": false, "disable_client_physics": true, "framelock": "software" },
+
+            "nodes": [
+                { "id": "inm275559", "address": "10.160.98.155", "display": [ "disp_farleft", "disp_left", "disp_right", "disp_farright" ], "resolution": [ 15360, 2160 ], "exclusive_fullscreen": true }
+            ],
+
+            "displays": [
+                { "id": [ "disp_farleft", "disp_left", "disp_right", "disp_farright" ], "type": "window", "cull_infront": true, "ul": [ -0.829, 0.0, 0 ], "ll": [ -0.829, -0.942, 0 ], "lr": [ 0.829, -0.942, 0 ] },
+                
+                { "id": "disp_farleft", "viewport": "vp_farleft", "transform": { "translate": [ -2.3, 1.8, 0.38 ], "rotate": [ 0, -90, 0 ] } },
+                { "id": "disp_left", "viewport": "vp_left", "transform": { "translate": [ -1.72, 1.8, 1.8 ], "rotate": [ 0, -45, 0 ] } },
+                { "id": "disp_right", "viewport": "vp_right", "transform": { "translate": [ -0.3, 1.8, 2.4 ], "rotate": [ 0, 0, 0 ] } },
+                { "id": "disp_farright", "viewport": "vp_farright", "transform": { "translate": [ 1.12, 1.8, 1.8 ], "rotate": [ 0, 45, 0 ] } }
+            ],
+
+            "viewports": [
+                { "id": "vp_farleft", "x": 0, "width": 0.25 },
+                { "id": "vp_left", "x": 0.25, "width": 0.25 },
+                { "id": "vp_right", "x": 0.5, "width": 0.25 },
+                { "id": "vp_farright", "x": 0.75, "width": 0.25 }
+            ]
+        },
+        {
+            "id": "touch_display",
+
+            "nodes": [
+                { "id": "desktop-tbm5psr", "address": "10.160.99.229", "display": "disp_touch", "exclusive_fullscreen": true }
+            ],
+
+            "displays": [
+                { "id": "disp_touch", "type": "window", "cull_infront": true, "transform": { "translate": [ 1.55, 1.329, 0.3 ], "rotate": [ 0, 90, 0 ] },
+                    "camera_origin": { "translate": [ 0, 0, -1.5 ] }, "ul": [ -0.4145, 0.471, 0 ], "ll": [ -0.4145, -0.471, 0 ], "lr": [ 1.2435, -0.471, 0 ] }
+            ]
+        },
+        {
+            "id": "penta_display",
+
+            "inherit": [ "quad_display", "touch_display" ]
+        },
+        {
+            "id": "quad_display_with_hololens",
+
+            "inherit": [ "quad_display", "hololens" ]
+        },
+        {
+            "id": "touch_display_with_hololens",
+
+            "inherit": [ "touch_display", "hololens" ]
+        },
+        {
+            "id": "penta_display_with_hololens",
+
+            "inherit": [ "penta_display", "hololens" ]
+        },
+        {
+            "id": "tracked_quad_display",
+
+            "cluster": { "master": "inm275559", "data_port": 4448, "sync_port": 4449, "packet_limit": 1048576, "auto_sync_rigid": true,
+                         "auto_sync_nonstatic": false, "disable_client_physics": true, "framelock": "software" },
+
+            "nodes": [
+                { "id": "inm275559", "address": "10.160.98.80", "display": [ "disp_farleft", "disp_left", "disp_right", "disp_farright" ], "resolution": [ 15360, 2160 ], "exclusive_fullscreen": true }
+            ],
+
+            "displays": [
+                { "id": [ "disp_farleft", "disp_left", "disp_right", "disp_farright" ], "type": "trackedwindow", "cull_infront": true, "ul": [ -0.829, 0.0, 0 ], "ll": [ -0.829, -0.942, 0 ], "lr": [ 0.829, -0.942, 0 ] },
+                
+                { "id": "disp_farleft", "viewport": "vp_farleft", "tracker": "track_farleft" },
+                { "id": "disp_left", "viewport": "vp_left", "tracker": "track_left" },
+                { "id": "disp_right", "viewport": "vp_right", "tracker": "track_right" },
+                { "id": "disp_farright", "viewport": "vp_farright", "tracker": "track_farright" }
+            ],
+
+            "viewports": [
+                { "id": "vp_farleft", "x": 0, "width": 0.25 },
+                { "id": "vp_left", "x": 0.25, "width": 0.25 },
+                { "id": "vp_right", "x": 0.5, "width": 0.25 },
+                { "id": "vp_farright", "x": 0.75, "width": 0.25 }
+            ],
+
+            "trackers": [
+                { "id": "track_farleft", "type": "vrpn", "address": "Farleft@10.160.98.129", "forward": "Z", "right": "-X", "up": "Y", "handedness": "right" },
+                { "id": "track_left", "type": "vrpn", "address": "Left@10.160.98.129", "forward": "Z", "right": "-X", "up": "Y", "handedness": "right" },
+                { "id": "track_right", "type": "vrpn", "address": "Right@10.160.98.129", "forward": "Z", "right": "-X", "up": "Y", "handedness": "right" },
+                { "id": "track_farright", "type": "vrpn", "address": "Farright@10.160.98.129", "forward": "Z", "right": "-X", "up": "Y", "handedness": "right" }
+            ]
+        },
+        {
+            "id": "tracked_touch_display",
+
+            "nodes": [
+                { "id": "desktop-tbm5psr", "address": "10.160.99.229", "display": "disp_touch", "exclusive_fullscreen": true }
+            ],
+
+            "displays": [
+                { "id": "disp_touch", "type": "trackedwindow", "tracker": "track_touch", "cull_infront": true,
+                    "camera_origin": { "translate": [ 0, 0, -1.5 ] }, "ul": [ -0.4145, 0.471, 0 ], "ll": [ -0.4145, -0.471, 0 ], "lr": [ 1.2435, -0.471, 0 ] }
+            ],
+
+            "trackers": [
+                { "id": "track_touch", "type": "vrpn", "address": "Touch@10.160.98.80", "forward": "Z", "right": "-X", "up": "Y", "handedness": "right" }
+            ]
+        },
+        {
+            "id": "tracked_penta_display",
+
+            "inherit": [ "tracked_quad_display", "tracked_touch_display" ]
+        },
+        {
+            "id": "tracked_quad_display_with_hololens",
+
+            "inherit": [ "tracked_quad_display", "hololens" ]
+        },
+        {
+            "id": "tracked_touch_display_with_hololens",
+
+            "inherit": [ "tracked_touch_display", "hololens" ]
+        },
+        {
+            "id": "tracked_penta_display_with_hololens",
+
+            "inherit": [ "tracked_penta_display", "hololens" ]
+        },
+        {
+            "id": "quad_display_with_tracked_touch",
+
+            "inherit": [ "quad_display", "tracked_touch_display" ]
+        },
+        {
+            "id": "quad_display_with_tracked_touch_and_hololens",
+
+            "inherit": [ "quad_display_with_tracked_touch", "hololens" ]
+        }
+    ]
+}

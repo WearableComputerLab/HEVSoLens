@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: Assets/HEVS/Examples/Scenes/InteractionTest.unity
+    guid: 6fb53533f7aeac242a6f1c1517067eeb
+  - enabled: 0
+    path: Assets/UniSA/Examples/Scenes/Graph.unity
+    guid: ec7bc61a546b74508b2c263aa329d476
+  - enabled: 0
+    path: Assets/UniSA/Examples/Scenes/Graph Laptop.unity
+    guid: 82eeccc662f875e4289d45f624ff6377
+  - enabled: 0
+    path: Assets/UniSA/Examples/Scenes/Move Cube.unity
+    guid: 04151678cee8d474082c1bb5d0514fa6
+  m_configObjects: {}
